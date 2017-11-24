@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>vue点击切换显示隐藏</title>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+        }
+        ul{
+            width: 200px;
+            height: auto;
+        }
+        h2{
+            background: green;
+            border: 1px solid #fff;
+            color: #fff;
+            height: 30px;
+            line-height: 30px;
+            text-indent: 24px;
+            cursor: pointer;
+        }
+        h3{
+            background: #EAF5DF;
+            height: 24px;
+            line-height: 24px;
+            border: 1px solid #fff;
+            text-indent: 50px;
+            cursor: pointer;
+        }
+        h3:hover{
+            border-bottom: 2px solid #00b3ff;
+            background: #ccc;
+            transition: all 1s;
+        }
+    </style>
+</head>
+<body>
+<h1>简易左菜单栏</h1>
+<div id="main">
+    <ul>
+        <li v-for="item in items">
+            <h2 @click="click(item)">{{item.name}}</h2>
+            <ul v-show="item.nav">
+                <li v-for="list in item.navs">
+                    <h3>{{list.name}}</h3>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    new Vue({
+        el:"#main",
+        data:{
+            items:[
+                {
+                    name:'基础',
+                    nav:false,
+                    navs:[
+                        {
+                            name:'安装'
+
+                        },
+                        {
+                            name:'介绍'
+                        },
+                        {
+                            name:'vue实例'
+                        },
+                        {
+                            name:'模板语法'
+                        },
+                        {
+                            name:'计算属性和观察者'
+                        },
+                        {
+                            name:'class与style绑定'
+                        },
+                    ]
+                },
+                {
+                    name:'过渡&动画',
+                    nav:false,
+                    navs:[
+                        {
+                            name:'进入/离开&列表过渡'
+                        },
+                        {
+                            name:'状态过渡'
+                        }
+                    ]
+                },
+                {
+                    name:'可复用性&组合',
+                    nav:false,
+                    navs:[
+                        {
+                            name:'混合'
+                        },
+                        {
+                            name:'自定义指令'
+                        },
+                        {
+                            name:'插件'
+                        }
+                    ]
+                }
+            ]
+        },
+        methods:{
+            click:function(item){
+                item.nav = !item.nav
+            }
+        }
+    })
+</script>
+</body>
+</html>
